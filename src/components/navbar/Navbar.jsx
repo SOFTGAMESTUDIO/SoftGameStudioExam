@@ -65,7 +65,7 @@ function Navbar() {
                 </div>
 
                 {/* Sidebar Menu Links */}
-                <div className="block space-y-6 border-t border-gray-200 px-4 py-6 text-xl">
+                <div className="block space-y-6 border-t border-gray-200 px-2 py-4 text-2xl">
                   <Link to={user ? "/profile" : "/login"} className="text-white hover:text-cyan-400 flex items-center">
                     <i className="fa-solid fa-user"></i>
                     <span className="ml-1">Account</span>
@@ -81,6 +81,11 @@ function Navbar() {
                   <Link to={user ? "/YOUREXAM" : "/login"} className="text-white hover:text-cyan-400 flex items-center">
                     <i className="fa-solid fa-calendar-days"></i>
                     <span className="ml-1">Your Exam</span>
+                  </Link>
+
+                  <Link to={user ? "/OnlineQuiz" : "/login"} className="text-white hover:text-cyan-400 flex items-center">
+                    <i className="fa-solid fa-calendar-days"></i>
+                    <span className="ml-1">Online Quiz</span>
                   </Link>
 
                   <Link to="/Result" className="text-white hover:text-cyan-400 flex items-center">
@@ -133,19 +138,23 @@ function Navbar() {
             <div className="ml-4 flex lg:ml-0">
               <Link to="/" className="flex">
                 <h1 className="hidden sm:block text-2xl font-bold text-white px-2 py-1 rounded">SOFT GAME STUDIO EXAM</h1>
-                <h1 className="sm:hidden text-2xl font-bold text-white px-2 py-1 rounded">S G S EXAM</h1>
+                <h1 className="sm:hidden text-3xl font-bold text-white px-2 py-1 rounded">S G S EXAM</h1>
               </Link>
             </div>
 
             {/* Right Section */}
             <div className="ml-auto flex items-center lg:space-x-6">
-              <Link
-                to="https://softgamestudio.web.app/"
-                className="text-white hover:text-cyan-400 flex justify-center items-center"
-              >
-                <i className="fa-solid fa-house"></i>
-                <h1 className="ml-1 font-bold">HOME</h1>
-              </Link>
+            
+                  <div>
+                    <Link
+                      to={"/"}
+                      className="text-white  hover:text-cyan-400  m-2 flex justify-center text-center items-center "
+                    >
+                      <i class="fa-solid fa-house "></i>
+                      
+                    </Link>
+                  </div>
+              
             </div>
           </div>
         </nav>

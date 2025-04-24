@@ -42,20 +42,16 @@ import Resetpassword from './pages/registration/Resetpassword'
 import Testimonial from './components/testimonial/Testimonial';
 
 
-import CExam from './pages/EXAM CONTROLER/C_Exam';
-import CPPExam from './pages/EXAM CONTROLER/CPP_Exam';
-import PythonExam from './pages/EXAM CONTROLER/PYTHON_EXAM';
-import CodeEditor from './pages/EXAM CONTROLER/WEBDEVEXAM';
+import QuizExam from './pages/EXAM CONTROLER/QuizExam';
 import GetResult from './pages/WEB JL EXAM/GetResult';
 import UpdaetUserData from './pages/Profile/UpdaetUserData';
 
-
-
-
-
-
-
 import ScrollToTop from './ScrollToTop';
+import ExamList from './pages/EXAM CONTROLER/ExamList';
+import ExamDetails from './pages/EXAM CONTROLER/ExamDetails';
+import BackButtonHandler from './BackButtonHandler';
+import EditQuizDetails from './pages/admin/dashboard/Dashbord/Quiz/EditQuizDetails';
+import EditQuizQuestions from './pages/admin/dashboard/Dashbord/Quiz/EditQuizQuestions';
 
 
 
@@ -86,6 +82,7 @@ function App() {
     v7_relativeSplatPath: true 
 }}>
       <ScrollToTop/>
+      <BackButtonHandler/>
         <Routes>
        
 
@@ -115,7 +112,23 @@ function App() {
             }
           />
           
-         
+          <Route
+            path="/OnlineQuiz"
+            element={<ExamList/>}
+          />
+          
+          <Route
+           
+            path="/quiz/:id"
+            element={
+              <ProtectedRoute>
+                <QuizExam/>
+              </ProtectedRoute>}
+          />
+          <Route
+            path="/examinfo/:id"
+            element={<ExamDetails/>}
+          />
           <Route
             path="/addproduct"
             element={
@@ -140,6 +153,24 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/ADMIN-EXAM/details/:id"
+            element={
+              <ProtectedRouteForAdmin>
+                <EditQuizDetails/>
+              </ProtectedRouteForAdmin>
+            }
+          />
+          <Route
+            path="/ADMIN-EXAM/questions/:id"
+            element={
+              <ProtectedRouteForAdmin>
+                <EditQuizQuestions/>
+              </ProtectedRouteForAdmin>
+            }
+          />
+
+          
           
           <Route
             path="/dashboard"
@@ -162,19 +193,6 @@ function App() {
           <Route path="/Result" element={<GetResult />} />
 
        
-
-
-          <Route path="/C_EXAM_SoftGameStudio" element={<CExam />} />
-          <Route path="/CPP_EXAM_SoftGameStudio" element={<CPPExam />} />
-          <Route path="/Python_EXAM_SoftGameStudio" element={<PythonExam />} />
-          <Route path="/WEBDEV_EXAM_SoftGameStudio" element={<CodeEditor />} />
-
-          
-          
-
-
-
-
           
         </Routes>
         <ToastContainer />

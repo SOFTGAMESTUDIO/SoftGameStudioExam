@@ -12,6 +12,17 @@ const cartSlice = createSlice({
       // Save updated state to localStorage
       localStorage.setItem("cart", JSON.stringify(state));
     },
+    removeOneFromCart: (state, action) => {
+      const item = action.payload;
+      const index = state.findIndex((i) => i.id === item.id);
+      if (index !== -1) {
+        if (state[index].quantity > 1) {
+          state[index].quantity -= 1;
+        } else {
+          state.splice(index, 1);
+        }
+      }
+    },
     deleteFromCart(state, action) {
       const index = state.findIndex((item) => item.id === action.payload.id);
       if (index !== -1) {
@@ -19,6 +30,9 @@ const cartSlice = createSlice({
         // Save updated state to localStorage
         localStorage.setItem("cart", JSON.stringify(state));
       }
+    },
+    clearCart: () => {
+      return [];
     },
   },
 });

@@ -6,6 +6,9 @@ import AdminFetchUserWeb from "./Dashbord/AdminFetchUserWeb";
 import UploadResult from "./Dashbord/UploadResult";
 import Layout from "../../../components/layout/Layout";
 import ExamDetails from "./Dashbord/ExamUplode";
+import AdminCreateQuiz from "./Dashbord/Quiz/CreateQuiz";
+import UserAnswers from "./Dashbord/Quiz/UserAnswers";
+import ManageQuizzes from "./Dashbord/Quiz/ManageQuizzes";
 
 const DashbordExam = () => {
   return (
@@ -38,6 +41,21 @@ const DashbordExam = () => {
                 Upload Result
               </button>
             </Tab>
+            <Tab>
+              <button className="font-semibold text-lg border-b-4 border-emerald-500 bg-transparent text-emerald-500 hover:shadow-xl hover:scale-105 transform transition-all duration-300 rounded-md py-3 px-6 flex items-center gap-3">
+                Create Quiz
+              </button>
+            </Tab>
+            <Tab>
+              <button className="font-semibold text-lg border-b-4 border-emerald-500 bg-transparent text-emerald-500 hover:shadow-xl hover:scale-105 transform transition-all duration-300 rounded-md py-3 px-6 flex items-center gap-3">
+              Manage Quizzes
+              </button>
+            </Tab>
+            <Tab>
+              <button className="font-semibold text-lg border-b-4 border-emerald-500 bg-transparent text-emerald-500 hover:shadow-xl hover:scale-105 transform transition-all duration-300 rounded-md py-3 px-6 flex items-center gap-3">
+                Answer Quiz
+              </button>
+            </Tab>
           </TabList>
           
 
@@ -52,6 +70,15 @@ const DashbordExam = () => {
           </TabPanel>
           <TabPanel>
             <UploadResult />
+          </TabPanel>
+          <TabPanel>
+            <AdminCreateQuiz/>
+          </TabPanel>
+          <TabPanel>
+            <ManageQuizzes/>
+          </TabPanel>
+          <TabPanel>
+            <UserAnswers/>
           </TabPanel>
         </Tabs>
       </div>

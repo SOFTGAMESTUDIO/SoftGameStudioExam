@@ -4,7 +4,6 @@ import { getFirestore, collection, getDocs } from "firebase/firestore";
 import myContext from "../../context/data/myContext";
 import Layout from "../../components/layout/Layout";
 import { fireDB } from "../../fireabase/FirebaseConfig";
-import Time from "../../components/Time/Time";
 
 const Profile = () => {
   const [rollNo, setRollNo] = useState("");
@@ -154,20 +153,14 @@ const Profile = () => {
 
         {showOptions && (
           <div className="flex flex-wrap justify-between mt-4">
-            <Link to="/updateuser">
+            <Link to="https://softgamestudio.web.app/profile">
               <button
-                onClick={() => editUserHandle(filteredUser)}
                 className="m-2 bg-cyan-500 text-gray-900 font-semibold py-2 px-4 rounded-lg hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"
               >
                 Edit Profile
               </button>
             </Link>
-            <button
-              onClick={() => deleteUserData(filteredUser)}
-              className="m-2 bg-red-500 text-gray-100 font-semibold py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
-            >
-              Delete Account
-            </button>
+           
           </div>
         )}
       </div>
@@ -258,9 +251,6 @@ const Profile = () => {
           <div className="flex flex-col  gap-8 items-baseline">
             <div className="w-full ">
               <ProfileCard />
-            </div>
-            <div className="w-full ">
-              <Orders />
             </div>
           </div>
         </div>

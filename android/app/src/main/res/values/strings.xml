@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SGS EXAM</string>
+    <string name="title_activity_main">SGS EXAM</string>
+    <string name="package_name">sgs.exam.web.app</string>
+    <string name="custom_url_scheme">sgs.exam.web.app</string>
+</resources>

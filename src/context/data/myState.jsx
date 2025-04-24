@@ -188,11 +188,8 @@ function myState(props) {
 
   // Function to generate a unique roll number
   const generateRollNumber = async () => {
-    const rollSnapshot = await getDocs(collection(fireDB, "rollNumbers"));
+    const rollSnapshot = await getDocs(collection(fireDB, "users"));
     const nextRollNo = 250001 + rollSnapshot.size;
-
-    await addDoc(collection(fireDB, "rollNumbers"), { rollNo: nextRollNo });
-
     return nextRollNo;
   };
 
