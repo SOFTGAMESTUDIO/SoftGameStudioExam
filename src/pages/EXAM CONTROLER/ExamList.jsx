@@ -65,7 +65,7 @@ const ExamList = () => {
   }
 
   if (quizzes.length === 0) {
-    return <p className="text-center mt-10 text-white">No exams found.</p>;
+    return (<Layout><p className="text-center mt-10 text-white h-screen justify-center items-center flex">No exams found.</p></Layout> );
   }
 
   return (

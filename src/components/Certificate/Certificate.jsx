@@ -15,6 +15,8 @@ const Certificate = ({
   examName = "JavaScript Basics",
   date = "01-01-2025",
   language = "English",
+  score = "100",
+  Que = "0",
 }) => {
   const printRef = useRef();
   
@@ -221,11 +223,21 @@ const Certificate = ({
                 {name}
               </h3>
               <p className="text-sm text-gray-400 mt-2">Roll No: {rollNumber}</p>
-              <p className="text-gray-300 text-sm sm:text-base mt-6 max-w-3xl mx-auto leading-relaxed">
-                This certificate is proudly awarded for successfully completing
-                the Quiz Competition, showcasing knowledge, focus, and a spirit
-                of excellence.
-              </p>
+              <p className="text-gray-200 text-base sm:text-lg md:text-xl mt-8 max-w-4xl mx-auto leading-relaxed text-center px-4">
+  This certificate is proudly presented to recognize your outstanding achievement in the 
+  <span className="text-blue-400 font-semibold"> Quiz Competition</span>. 
+  
+  By securing your score of  <span className="text-green-400 font-bold">{score}</span> out of <span className="text-green-400 font-bold"> {Que}</span>, 
+  you have demonstrated not only a deep understanding of the subject matter but also exceptional dedication, focus, and perseverance. 
+  
+  Your performance reflects your knowledge as well as your unwavering determination and passion for learning. 
+ 
+  We commend your efforts and celebrate this accomplishment as a testament to your hard work, resilience, and commitment to excellence.
+</p>
+
+
+
+
             </div>
 
             {/* Signatures */}

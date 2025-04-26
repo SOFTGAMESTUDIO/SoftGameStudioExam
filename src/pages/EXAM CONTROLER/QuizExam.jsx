@@ -193,35 +193,87 @@ const QuizExam = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    if (!filteredUser?.uid) {
-      toast.error("User not authenticated.");
-      return;
-    }
-    if (!quizData) {
-      toast.error("Quiz data not loaded.");
-      return;
-    }
+  const [score, setScore] = useState(0);
+  const [Que, setQue] = useState(0);
 
-    try {
-      await addDoc(collection(fireDB, "user_Quiz"), {
-        mcqAnswers: selectedAnswers,
-        quizId,
-        language: quizData.language,
-        uid: filteredUser.uid,
-        email: filteredUser.email,
-        name: filteredUser.name,
-        rollNumber: filteredUser.rollNumber,
-        timestamp: new Date(),
-      });
+// Fetch score based on user UID
+const fetchUserScore = async (uid, quizId) => {
+  try {
+    const q = query(
+      collection(fireDB, "user_Quiz"),
+      where("uid", "==", uid),
+      where("quizId", "==", quizId)
+    );
+    const querySnapshot = await getDocs(q);
 
-      toast.success("Quiz submitted successfully!");
-      setStep(2);
-    } catch (error) {
-      console.error("Submission error:", error);
-      toast.error("Failed to submit. Try again.");
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0].data();
+      setScore(userDoc.score || 0);
+      setQue(userDoc.NoQuestion || 0)
+    } else {
+      console.warn("No score found for this user and quiz.");
     }
-  };
+  } catch (error) {
+    console.error("Error fetching user score:", error);
+  }
+};
+
+useEffect(() => {
+  if (filteredUser?.uid && quizId) {
+    fetchUserScore(filteredUser.uid, quizId);
+  }
+}, [filteredUser, quizId]); // This effect will run every time filteredUser or quizId changes
+
+
+const handleSubmit = async () => {
+  if (!filteredUser?.uid) {
+    toast.error("User not authenticated.");
+    return;
+  }
+
+  if (!quizData) {
+    toast.error("Quiz data not loaded.");
+    return;
+  }
+
+  // Calculate score
+  let correctCount = 0;
+  quizData.questions.forEach((question, index) => {
+    const selected = selectedAnswers[index];
+    if (selected === question.correctAnswer) {
+      correctCount++;
+    }
+  });
+
+  let NoQuestion = quizData.questions.length;
+
+  try {
+    await addDoc(collection(fireDB, "user_Quiz"), {
+      quizId,
+      language: quizData.language,
+      uid: filteredUser.uid,
+      email: filteredUser.email,
+      name: filteredUser.name,
+      rollNumber: filteredUser.rollNumber,
+      timestamp: new Date(),
+      score: correctCount,
+      NoQuestion : NoQuestion,
+    });
+
+    fetchUserScore(filteredUser.uid, quizId);
+
+    toast.success("Quiz submitted successfully!");
+    setStep(2);
+
+    // Fetch score after submission
+    fetchUserScore(filteredUser.uid);
+  } catch (error) {
+    console.error("Submission error:", error);
+    toast.error("Failed to submit. Try again.");
+  }
+};
+
+  
 
   if (loading) {
     return (
@@ -266,6 +318,8 @@ const QuizExam = () => {
           examName={quizData.name}
           date={date}
           language={quizData.language}
+          score={score}
+          Que={Que}
         />
       </div>
     </div>
@@ -358,6 +412,8 @@ const QuizExam = () => {
               examName={quizData.name}
               date={date}
               language={quizData.language}
+              score={score}
+              Que={Que}
             />
           </div>
         </div>

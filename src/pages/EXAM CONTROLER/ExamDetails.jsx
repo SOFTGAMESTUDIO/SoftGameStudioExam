@@ -119,7 +119,6 @@ const ExamDetails = () => {
               </button>
             ) : (
               <button
-              onClick={() => handleOpenQuiz(exam.id)}
               className="bg-indigo-500 text-white px-6 py-2 rounded hover:bg-indigo-600 transition-all"
             >
               {timeLeft || "Loading timer..."}
